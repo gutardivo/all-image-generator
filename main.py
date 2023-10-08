@@ -54,3 +54,5 @@ if __name__ == "__main__":
         n_colors = [256]
 
     generate(n_colors)
+
+# You can use this in terminal with: "python3 main.py -n 64" or "python3 main.py" for all 256 colors
