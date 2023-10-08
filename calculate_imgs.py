@@ -1,5 +1,5 @@
 import gmpy2
-read_loc = "/Users/mac/Documents/python/all-image-generator/calc.txt"
+read_loc = "../calc.txt"
 
 def write_output_to_file(file_name, input):
     file = open("/path/to/file/"+file_name, 'w')
