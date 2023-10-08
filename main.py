@@ -1,29 +1,56 @@
+import os
 from PIL import Image
-n = 5**2
-n_colors = 2
+import argparse
+from itertools import product
 
-r = int(n**(1/2))
+def generate(n_colors):
+    if n_colors[0] == 1:
+        colors = 255
+    elif n_colors[0] == 256:
+        colors = 1
+    else:
+        colors = (256 // n_colors[0]) - 1
 
-# Generate and save images for all possible truth table outputs
-for i in range(2**n):
-    binary = bin(i)[2:].zfill(n)  # Convert the index to binary with leading zeros
 
-    # Create image based on binary values
-    image = Image.new("RGB", (r, r), "black")
+    current_directory = os.path.dirname(os.path.realpath(__file__))
+
+    # Create the 'images' directory if it doesn't exist
+    images_directory = os.path.join(current_directory, "images")
+    os.makedirs(images_directory, exist_ok=True)
+
+    x = 2
+    y = 2
+
+    n = 0
+
+    n_pixels = x * y
+
+    image = Image.new("RGB", (x, y)) # Create a X x Y grid image
     pixels = image.load()
+    
+    color_combinations = product(range(0, 256, colors), repeat=3*n_pixels)
 
-    for k in range(int(n_colors-1)):
-        for j in range(n):
-            x = j % r   # X-coordinate of the pixel
-            y = j // r  # Y-coordinate of the pixel
+    for colors in color_combinations:
+        for i in range(n_pixels):
+            row = i // x
+            col = i % y
+            rgb = colors[i * 3:i * 3 + 3]
+            pixels[row, col] = rgb
+
+        image_filename = os.path.join(images_directory, f"image_{n}.png")
+        n += 1
+        image.save(image_filename)
 
 
-            if binary[j] == "1":
-                if k == 0:
-                    pixels[x, y] = (128, 128, 128)  # Set pixel to grey if k value is 0
-                else:
-                    pixels[x, y] = (255, 255, 255)  # Set pixel to white if k value is 1
-                # pixels[x, y] = (255, 255, 255)  # Set pixel to white if k value is 1
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="All Image Generator")
+    parser.add_argument("-n", "--n_colors", type=int, nargs='*', help="Specify the number of colors")
+    args = parser.parse_args()
 
+    if args.n_colors:
+        n_colors = args.n_colors
+    else:
+        # If no n_colors is specified, it will use 256
+        n_colors = [256]
 
-        image.save(f"./images/{binary}_{k}.png")
+    generate(n_colors)

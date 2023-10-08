@@ -7,6 +7,6 @@ If we use all 256 colors in RGB, there's 256ˆ3 colors, equals to 16,777,216 pos
 
 This generator is a concept because there's 1.5e14981179 possible images in 1920x1080 resolution.
 
-Since this generates every image possible in this resolution, it will make a perfect image of a monkey studying quantum physics in the middle of the Broadway, NYC. Also a every frame of Finding Nemo, but instead of clown fish, it is a goldfish.
+Since this generates every image possible in this resolution, it will make a perfect image of a monkey studying quantum physics in the middle of the Broadway, NYC. Also every frame of Finding Nemo, but instead of clown fish, it is a goldfish.
 
 NOTE: This is a concept, maybe one day we can use this with an AI to search for the generated images.
