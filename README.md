@@ -1,5 +1,5 @@
 In this repo, I put a concept image generator that was in my head since 2021, and now that's alive here, think like a true table or something like this.
-Every pixels in an image has limited colors and the image has limited pixels, for example:
+Every pixel in an image has limited colors and the image has limited pixels, for example:
 
 A full HD image has 1920 in width and 1080 in height, so there's 2,073,600 pixels in this image.
 
